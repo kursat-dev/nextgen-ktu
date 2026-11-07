@@ -1,0 +1,1 @@
+Bu repo KTU NextGen kulübü için geliştirilmiştir :)
