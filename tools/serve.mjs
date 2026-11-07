@@ -43,7 +43,9 @@ createServer(async (req, res) => {
     });
     res.end(body);
   } catch {
-    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" });
-    res.end("404");
+    // Like most static hosts: unknown URLs get /404.html with a 404 status.
+    const page = await readFile(join(ROOT, "404.html")).catch(() => "404");
+    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
+    res.end(page);
   }
 }).listen(PORT, "127.0.0.1", () => console.log(`NextGen KTÜ preview → http://localhost:${PORT}`));
