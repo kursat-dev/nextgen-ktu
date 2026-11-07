@@ -20,7 +20,7 @@
 // Rules for new text: no backticks (`) and no "${" (they live inside JS
 // template literals), and prefer ’ over ' to keep HTML escaping simple.
 
-import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -37,8 +37,9 @@ function walk(dir, test, out = []) {
   return out;
 }
 
-const TARGETS = [
-  ...["index.html", "schedule/index.html", "speakers/index.html"].map((f) => join(SITE, f)),
+// Resolved on every call: migrations may add/remove files between calls.
+const targets = () => [
+  ...["index.html", "schedule/index.html", "speakers/index.html"].map((f) => join(SITE, f)).filter(existsSync),
   ...walk(SITE_MODULES, (n) => n.endsWith(".mjs") || n.endsWith(".json")),
 ];
 
@@ -72,7 +73,7 @@ function validate(to) {
 }
 
 export function replaceEverywhere(pairs, { dry = false, quiet = false } = {}) {
-  const cache = new Map(TARGETS.map((f) => [f, readFileSync(f, "utf8")]));
+  const cache = new Map(targets().map((f) => [f, readFileSync(f, "utf8")]));
   const report = [];
   for (const { from, to, min = 1, raw = false, only } of pairs) {
     // raw: exact code/markup snippet (e.g. "children:`27`"), no escaping variants
