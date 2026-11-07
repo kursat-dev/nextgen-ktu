@@ -101,6 +101,28 @@ export function removeCall(src, anchor) {
   return src.slice(0, s) + "null" + src.slice(e);
 }
 
+// Rewrite the text of the innermost call around every occurrence of `anchor`
+// with fn(callText) — used to change props of one specific component instance.
+export function editCalls(src, anchor, fn) {
+  let count = 0;
+  for (let from = 0, at; (at = src.indexOf(anchor, from)) >= 0; ) {
+    let s = src.lastIndexOf(PURE, at), range;
+    while (s >= 0 && !range) {
+      const end = matchBracket(src, src.indexOf("(", s + PURE.length));
+      if (end > at) range = [s, end + 1];
+      else s = src.lastIndexOf(PURE, s - 1);
+    }
+    if (!range) throw new Error(`no enclosing call for ${anchor}`);
+    const before = src.slice(range[0], range[1]);
+    const after = fn(before);
+    src = src.slice(0, range[0]) + after + src.slice(range[1]);
+    from = range[0] + after.length;
+    count++;
+  }
+  if (!count) throw new Error(`anchor not found: ${anchor}`);
+  return src;
+}
+
 // Remove the innermost call around every occurrence of a (possibly repeated) anchor.
 export function removeAllCalls(src, anchor) {
   let count = 0;
