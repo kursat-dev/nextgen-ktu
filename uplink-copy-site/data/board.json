@@ -1,0 +1,4 @@
+{
+  "_aciklama": "Yönetim kurulu. 'members' boşken ana sayfada 'Yönetim kurulu bilgileri yakında paylaşılacak' mesajı görünür. Örnek üye: {\"name\": \"Ad Soyad\", \"role\": \"Başkan\", \"photo\": \"/assets/nextgen/board/ad-soyad.jpg\"} — photo isteğe bağlı (kare görsel önerilir).",
+  "members": []
+}
