@@ -1,0 +1,4 @@
+{
+  "_aciklama": "Etkinlikler. Yeni etkinlik için 'events' listesine bir nesne ekle (README → 'Etkinlik ekleme'). Alanlar: title, description, date (YYYY-MM-DD), time (SS:DD, isteğe bağlı), location, online (true/false), applyUrl (https://…, isteğe bağlı), status: 'yaklasan' | 'basvuru-acik' | 'tamamlandi'. Tarihi geçen etkinlikler otomatik olarak 'Tamamlandı' altında görünür.",
+  "events": []
+}

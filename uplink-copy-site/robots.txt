@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Sitemap: alan adı kesinleşince eklenecek (mutlak URL gerekir).
