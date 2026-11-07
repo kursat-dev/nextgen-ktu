@@ -1,0 +1,46 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   NextGen KTÜ — overrides on top of the Uplink 27 Framer export.
+   Linked from every page's <head>. Colors come from the Framer tokens
+   (see tools/apply-palette.mjs); this file only reorders/hides template
+   parts and adds small brand details.
+   Selectors use Framer layer names ([data-framer-name]) or the section
+   class names, which are stable across breakpoints.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Section order (DOM order is the template's; flex `order` reorders it)
+      hero → yaklaşım → faaliyetler → etkinlikler → projeler → kampüs → katıl */
+main.framer-bahvun > .framer-u99rd8 { order: 0; }  /* Hero            → tanıtım        */
+main.framer-bahvun > .framer-1s747tx { order: 1; } /* Last year       → yaklaşım       */
+main.framer-bahvun > .framer-1msavlj { order: 2; } /* Tickets         → faaliyetler    */
+main.framer-bahvun > .framer-4wfsb8 { order: 3; }  /* Lineup          → etkinlikler    */
+main.framer-bahvun > .framer-8tt5fh { order: 4; }  /* Sponsors        → projeler       */
+main.framer-bahvun > .framer-1h0pze8 { order: 5; } /* Venue           → kampüs/galeri  */
+main.framer-bahvun > .framer-1raqwsl { order: 6; } /* Call for papers → katıl          */
+
+/* 2. Template-only parts hidden until NextGen has real content for them */
+main.framer-bahvun > .framer-tctu0s,                      /* FAQ (no verified Q&A yet)        */
+.framer-u99rd8 [data-framer-name="Mark"],                 /* Uplink logo mark in hero         */
+a[data-framer-name="Logo"] > [data-framer-name="Mark"],   /* Uplink logo mark in header       */
+.framer-4wfsb8 [data-framer-name="Days"],                 /* day_1/day_2 chips (needs CMS)    */
+.framer-1msavlj [data-framer-name="Audience"],            /* ticket tabs (needs CMS)          */
+.framer-1raqwsl [data-framer-name="Deadline"],            /* countdown (no date yet)          */
+[data-framer-name="Code of conduct"],                     /* links to legal pages not exported */
+[data-framer-name="Legal"],
+#__framer-badge-container,
+.__framer-badge {
+  display: none !important;
+}
+
+/* 3. Light-theme fixes for rules the template injects from JS */
+/* Project (ex-sponsor) logos were forced white for the dark theme. */
+[data-uplink-sponsors] [data-framer-name="Logo"] img {
+  filter: brightness(0) !important;
+}
+
+/* 4. Brand details */
+/* Hero wordmark: "nextgen" in ink, "ktü" in electric blue (replaces the
+   template's logo mark between the two words). */
+.framer-u99rd8 [data-framer-name="27"] .framer-text {
+  --framer-text-color: var(--token-f8b3f101-fe88-465e-9421-e2cbecf81c67) !important;
+}
+::selection { background: #1455e8; color: #fff; }
