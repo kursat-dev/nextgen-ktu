@@ -24,10 +24,7 @@ a[data-framer-name="Logo"] > [data-framer-name="Mark"],   /* Uplink logo mark in
 .framer-4wfsb8 [data-framer-name="Days"],                 /* day_1/day_2 chips (needs CMS)    */
 .framer-1msavlj [data-framer-name="Audience"],            /* ticket tabs (needs CMS)          */
 .framer-1raqwsl [data-framer-name="Deadline"],            /* countdown (no date yet)          */
-[data-framer-name="Code of conduct"],                     /* links to legal pages not exported */
-[data-framer-name="Legal"],
-#__framer-badge-container,
-.__framer-badge {
+[data-framer-name="Legal"] {                              /* emptied legal-links row       */
   display: none !important;
 }
 
