@@ -1,0 +1,2 @@
+var r=[];function a(e){return r.push(e),function(){r=r.filter(s=>e!==s)}}function p(e,t){r.forEach(s=>s(e,t))}var n=new Map([["appVersion",String(globalThis.framerBuildInfo.version)]]),i,o=globalThis.crashReport;o?.initialize(1024).then(()=>{i=o;for(let[e,t]of n)o.set(e,t);n.clear()},()=>{n.clear()});function h(e,t){i?i.set(e,String(t)):o&&n.set(e,String(t))}function u(e){return Math.round(e/1024/1024)}export{a,p as b,h as c,u as d};
+//# sourceMappingURL=https://app.framerstatic.com/chunk-7JB7LKQK.mjs.map

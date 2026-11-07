@@ -1,0 +1,2 @@
+function s(r,n,e){return Math.min(Math.max(e,r),n)}function x(r,n,e){return r+(n-r)*e}function h(r,n,e){return n===r?1:(e-r)/(n-r)}function M(r,n,e,b){return r===n&&e===b?u=>u:u=>u===0||u===1?u:i(c(u,0,1,r,e,0),n,b)}function c(r,n,e,b,u,t){let m=n+(e-n)/2,f=i(m,b,u)-r;return Math.abs(f)<=1e-7||t+1>=12?m:f>0?c(r,n,m,b,u,t+1):c(r,m,e,b,u,t+1)}function i(r,n,e){return(((1-3*e+3*n)*r+(3*e-6*n))*r+3*n)*r}export{s as a,x as b,h as c,M as d};
+//# sourceMappingURL=https://app.framerstatic.com/chunk-STDMHL4N.mjs.map
